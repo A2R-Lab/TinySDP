@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TinySDP: Real Time Semidefinite Optimization for Certifiable and Agile Edge Robotics</title>
+  <meta name="description" content="TinySDP is a real-time semidefinite optimization solver for certifiable embedded MPC with nonconvex obstacle constraints.">
+  <meta property="og:title" content="TinySDP: Real Time Semidefinite Optimization for Certifiable and Agile Edge Robotics">
+  <meta property="og:description" content="A project page for TinySDP with paper, video, experiment figures, and results.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/ushape_2x2_labeled.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-shell">
+        <nav class="top-nav" aria-label="Page">
+          <a href="#abstract">Abstract</a>
+          <a href="#experiments">Experiments</a>
+          <a href="#citation">Citation</a>
+        </nav>
+
+        <h1>
+          <span class="hero-title-line">TinySDP: Real Time Semidefinite Optimization</span>
+          <span class="hero-title-line">for Certifiable and Agile Edge Robotics</span>
+        </h1>
+
+        <p class="authors">
+          Ishaan Mahajan<sup>1</sup>, Jon Arrizabalaga<sup>2,&#8225;</sup>, Andrea Grillo<sup>3,4,&#8225;</sup>,
+          Fausto Vega<sup>2,&#8225;</sup>, James Anderson<sup>1,&#8224;</sup>, Zachary Manchester<sup>2,&#8224;</sup>,
+          and Brian Plancher<sup>3</sup>
+        </p>
+        <p class="affiliations">
+          <span><sup>1</sup>Columbia University, USA</span>
+          <span><sup>2</sup>Massachusetts Institute of Technology, USA</span>
+          <span><sup>3</sup>Dartmouth College, USA</span>
+          <span><sup>4</sup>Ecole Polytechnique Federale de Lausanne (EPFL), Switzerland</span>
+        </p>
+        <p class="notes">&#8225;Equal contribution &nbsp;&nbsp; &#8224;Equal advising</p>
+        <p class="accepted" aria-hidden="true">&nbsp;</p>
+
+        <div class="hero-actions">
+          <a class="button" href="assets/paper/tinysdp-paper.pdf" target="_blank" rel="noreferrer">Paper</a>
+          <a class="button" href="https://github.com/A2R-Lab/TinySDP" target="_blank" rel="noreferrer">Code</a>
+        </div>
+
+        <div class="media-frame">
+          <video controls preload="metadata" playsinline>
+            <source src="assets/video/TinySDP-RSS-v3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <section id="abstract" class="section section-compact">
+      <div class="content-column">
+        <h2>Abstract</h2>
+        <p class="lead">
+          Semidefinite programming (SDP) provides a principled framework for convex relaxations of nonconvex geometric constraints in motion planning, yet existing solvers are too computationally expensive for real-time control, particularly on resource-constrained embedded systems. To address this gap, we introduce TinySDP, the first semidefinite programming solver designed for embedded systems, enabling real-time model-predictive control (MPC) on microcontrollers for problems with nonconvex obstacle constraints.
+        </p>
+        <p>
+          TinySDP integrates positive-semidefinite cone projections into a cached-Riccati-based ADMM solver, leveraging computational structure for embedded tractability. We pair this solver with an <em>a posteriori</em> rank-1 certificate that converts relaxed solutions into explicit geometric guarantees at each timestep. On challenging benchmarks such as cul-de-sac and dynamic obstacle-avoidance scenarios that induce failures in local methods, TinySDP achieves collision-free navigation with up to 73% shorter paths than state-of-the-art baselines. We validate the approach on a Crazyflie quadrotor, demonstrating that semidefinite constraints can be enforced at real-time rates for agile embedded robotics.
+        </p>
+      </div>
+    </section>
+
+    <section id="experiments" class="section">
+      <div class="content-column">
+        <div class="section-head">
+          <h2>Experiments</h2>
+        </div>
+
+        <p>
+          We designed the evaluation around obstacle-avoidance geometries that are known to break local and reactive methods: a static U-shaped cul-de-sac, a dynamic moving-gap benchmark, dynamic 3D sphere scenarios, and embedded Crazyflie deployment. We compare TinySDP against TinyMPC-LIN, TinyMPC-HOCBF, and RPCBF under matched dynamics, input bounds, horizon length, and obstacle geometry. Zero-margin baselines are reported directly, and tuned-margin variants are included to show the best-case performance local methods can reach when given impractically large safety buffers.
+        </p>
+
+        <article class="experiment-block">
+          <div class="subsection-head">
+            <h3>Simulation: Static U-Shape Cul-de-Sac</h3>
+          </div>
+          <p>
+            TinySDP consistently escapes the cul-de-sac and reaches the true goal across all four initial conditions. The zero-margin linearized and HOCBF baselines fail in every case, while tuned TinyMPC-LIN requires a margin large enough to push the optimizer away from the actual goal. RPCBF remains safe but is substantially more conservative.
+          </p>
+
+          <figure class="figure-card figure-sm">
+            <img src="assets/img/ushape_2x2_labeled.png" alt="Static U-shape trajectories across four start conditions, comparing TinySDP, RPCBF, TinyMPC-LIN, and TinyMPC-HOCBF.">
+            <figcaption>
+              <strong>Static U-shape benchmark.</strong> TinySDP consistently navigates the cul-de-sac to reach the goal. RPCBF is safe but conservative, while the linearized and HOCBF baselines either crash, get stuck, or require impractically large margins.
+            </figcaption>
+          </figure>
+
+          <div class="table-grid">
+
+            <div class="table-wrap">
+              <table>
+                <caption>Start: Inside</caption>
+                <thead><tr><th>Method</th><th>Path Len</th><th>Goal Dist</th><th>Safe</th></tr></thead>
+                <tbody>
+                  <tr><td>TinySDP (ours)</td><td><strong>17.95</strong></td><td><strong>0.006</strong></td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>RPCBF</td><td>26.03</td><td>0.091</td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>TinyMPC-LIN (m=3.1m)</td><td>18.38</td><td>1.400</td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>TinyMPC-LIN (m=0m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                  <tr><td>TinyMPC-HOCBF (m=3m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                  <tr><td>TinyMPC-HOCBF (m=0m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <caption>Start: Outside Center</caption>
+                <thead><tr><th>Method</th><th>Path Len</th><th>Goal Dist</th><th>Safe</th></tr></thead>
+                <tbody>
+                  <tr><td>TinySDP (ours)</td><td><strong>10.15</strong></td><td><strong>0.021</strong></td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>RPCBF</td><td>31.03</td><td>0.093</td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>TinyMPC-LIN (m=3.1m)</td><td>24.58</td><td>1.400</td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>TinyMPC-LIN (m=0m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                  <tr><td>TinyMPC-HOCBF (m=3m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                  <tr><td>TinyMPC-HOCBF (m=0m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <caption>Start: Edge Up</caption>
+                <thead><tr><th>Method</th><th>Path Len</th><th>Goal Dist</th><th>Safe</th></tr></thead>
+                <tbody>
+                  <tr><td>TinySDP (ours)</td><td><strong>9.93</strong></td><td><strong>0.023</strong></td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>RPCBF</td><td>36.81</td><td>0.132</td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>TinyMPC-LIN (m=3.1m)</td><td>18.58</td><td>1.400</td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>TinyMPC-LIN (m=0m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                  <tr><td>TinyMPC-HOCBF (m=3m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                  <tr><td>TinyMPC-HOCBF (m=0m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <caption>Start: Edge Down</caption>
+                <thead><tr><th>Method</th><th>Path Len</th><th>Goal Dist</th><th>Safe</th></tr></thead>
+                <tbody>
+                  <tr><td>TinySDP (ours)</td><td><strong>9.93</strong></td><td><strong>0.023</strong></td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>RPCBF</td><td>36.25</td><td>0.108</td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>TinyMPC-LIN (m=3.1m)</td><td>23.64</td><td>1.400</td><td><span class="safe-yes">✓</span></td></tr>
+                  <tr><td>TinyMPC-LIN (m=0m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                  <tr><td>TinyMPC-HOCBF (m=3m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                  <tr><td>TinyMPC-HOCBF (m=0m)</td><td>&mdash;</td><td>&mdash;</td><td><span class="safe-no">✗</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </article>
+
+        <article class="experiment-block">
+          <div class="subsection-head">
+            <h3>Simulation: Dynamic Obstacles</h3>
+          </div>
+          <p>
+            In the moving-gap benchmark, TinySDP anticipates the obstacle motion and deviates early enough to keep positive clearance. The zero-margin local baselines collide, while tuned-margin variants achieve safety only by inflating the obstacle footprint far beyond what is usable on small agile platforms.
+          </p>
+
+          <figure class="figure-card">
+            <img src="assets/img/dynamic_1x3_labeled.png" alt="Dynamic moving-gap benchmark comparing TinySDP, RPCBF, TinyMPC-LIN, and TinyMPC-HOCBF.">
+            <figcaption>
+              <strong>Dynamic moving-gap benchmark.</strong> TinySDP actively negotiates the moving obstacle while maintaining goal accuracy. RPCBF remains safe but conservative, and the tuned local baselines rely on large margins.
+            </figcaption>
+          </figure>
+
+          <div class="table-wrap table-compact">
+              <table>
+                <caption>Dynamic obstacle results.</caption>
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Goal Dist</th>
+                    <th>Safe</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>TinySDP (ours)</td>
+                    <td><strong>0.018</strong></td>
+                    <td><span class="safe-yes">✓</span></td>
+                  </tr>
+                  <tr>
+                    <td>RPCBF</td>
+                    <td>0.069</td>
+                    <td><span class="safe-yes">✓</span></td>
+                  </tr>
+                  <tr>
+                    <td>TinyMPC-LIN (m=1.5m)</td>
+                    <td>0.023</td>
+                    <td><span class="safe-yes">✓</span></td>
+                  </tr>
+                  <tr>
+                    <td>TinyMPC-LIN (m=0m)</td>
+                    <td>&mdash;</td>
+                    <td><span class="safe-no">✗</span></td>
+                  </tr>
+                  <tr>
+                    <td>TinyMPC-HOCBF (m=3m)</td>
+                    <td>0.077</td>
+                    <td><span class="safe-yes">✓</span></td>
+                  </tr>
+                  <tr>
+                    <td>TinyMPC-HOCBF (m=0m)</td>
+                    <td>&mdash;</td>
+                    <td><span class="safe-no">✗</span></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </article>
+
+        <article class="experiment-block">
+          <div class="subsection-head">
+            <h3>Simulation: Extension to 3D Obstacle Avoidance</h3>
+          </div>
+          <p>
+            The same PSD lifting extends naturally from planar disks to 3D spheres. We illustrate this on two dynamic sphere scenarios: <em>Sweeping Barrier</em>, where a lateral sweep blocks the direct route, and <em>Vertical Gate</em>, where a time-varying opening forces a timed ascent-descent maneuver.
+          </p>
+
+          <figure class="figure-card figure-sm">
+            <img src="assets/img/psd_3d_dynamic_sweeping_barrier_mujoco_2x3_diagnostic.png" alt="Sweeping barrier 3D diagnostic views.">
+            <figcaption><strong>Sweeping Barrier.</strong> TinySDP executes an early nonplanar deviation to avoid moving spheres.</figcaption>
+          </figure>
+          <figure class="figure-card figure-sm">
+            <img src="assets/img/psd_3d_dynamic_vertical_gate_mujoco_2x3_diagnostic.png" alt="Vertical gate 3D diagnostic views.">
+            <figcaption><strong>Vertical Gate.</strong> TinySDP times a 3D ascent-descent maneuver through a changing spherical gap.</figcaption>
+          </figure>
+        </article>
+
+        <article class="experiment-block">
+          <div class="subsection-head">
+            <h3>Real-World Deployment: Crazyflie Safety Certificate</h3>
+          </div>
+          <p>
+            On Crazyflie hardware, TinySDP runs onboard in the control loop while maintaining the rank-1 certificate online. The deployed solver enforces the PSD constraint on the lifted planar position block and keeps the trace-gap certificate valid throughout flight.
+          </p>
+
+          <figure class="figure-card figure-sm">
+            <img src="assets/img/hardware.png" alt="Crazyflie hardware deployment with moving obstacle.">
+            <figcaption>
+              <strong>Crazyflie deployment.</strong> TinySDP runs onboard and reacts to the moving obstacle while tracking the commanded path.
+            </figcaption>
+          </figure>
+          <figure class="figure-card figure-sm figure-cert">
+            <img src="assets/img/crazyflie_certificate.png" alt="Rank-1 certificate evolution during Crazyflie deployment.">
+            <figcaption>
+              <strong>Rank-1 certificate during deployment.</strong> The lifted margin stays positive while the trace gap remains near zero, providing an online certificate of geometric safety.
+            </figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <section id="citation" class="section section-compact">
+      <div class="content-column">
+        <div class="section-head">
+          <p class="section-kicker">Citation</p>
+          <h2>BibTeX</h2>
+        </div>
+        <div class="code-card">
+<pre><code>@misc{mahajan2026tinysdp,
+  title        = {TinySDP: Real Time Semidefinite Optimization for Certifiable and Agile Edge Robotics},
+  author       = {Mahajan, Ishaan and Arrizabalaga, Jon and Grillo, Andrea and Vega, Fausto and Anderson, James and Manchester, Zachary and Plancher, Brian},
+  year         = {2026},
+  note         = {arXiv version},
+  url          = {https://github.com/A2R-Lab/TinySDP}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
