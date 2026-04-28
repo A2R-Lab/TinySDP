@@ -45,7 +45,7 @@
           <span><sup>4</sup>Ecole Polytechnique Federale de Lausanne (EPFL), Switzerland</span>
         </p>
         <p class="notes">&#8225;Equal contribution &nbsp;&nbsp; &#8224;Equal advising</p>
-        <p class="accepted" aria-hidden="true">&nbsp;</p>
+        <p class="accepted">ROBOTICS: SCIENCE AND SYSTEMS 2026</p>
 
         <div class="hero-actions">
           <a class="button" href="assets/paper/tinysdp-paper.pdf" target="_blank" rel="noreferrer">Paper</a>
@@ -273,16 +273,61 @@
           <h2>BibTeX</h2>
         </div>
         <div class="code-card">
-<pre><code>@misc{mahajan2026tinysdp,
-  title        = {TinySDP: Real Time Semidefinite Optimization for Certifiable and Agile Edge Robotics},
-  author       = {Mahajan, Ishaan and Arrizabalaga, Jon and Grillo, Andrea and Vega, Fausto and Anderson, James and Manchester, Zachary and Plancher, Brian},
-  year         = {2026},
-  note         = {arXiv version},
-  url          = {https://github.com/A2R-Lab/TinySDP}
+          <button class="copy-button" type="button" data-copy-target="citation-bibtex" aria-label="Copy BibTeX citation" title="Copy BibTeX citation">
+            <span class="copy-icon" aria-hidden="true"></span>
+          </button>
+<pre><code id="citation-bibtex">@inproceedings{mahajan2026tinysdp,
+  title={TinySDP: Real Time Semidefinite Optimization for Certifiable and Agile Edge Robotics},
+  author={Ishaan Mahajan and Jon Arrizabalaga and Andrea Grillo and Fausto Vega and James Anderson and Zachary Manchester and Brian Plancher},
+  booktitle={Robotics Science and Systems (RSS)},
+  address = {Sydney, Australia},
+  month={July},
+  year = {2026}
 }</code></pre>
         </div>
       </div>
     </section>
   </main>
+  <script>
+    const copyButton = document.querySelector("[data-copy-target]");
+
+    if (copyButton) {
+      copyButton.addEventListener("click", async () => {
+        const target = document.getElementById(copyButton.dataset.copyTarget);
+        if (!target) return;
+
+        const citation = target.textContent.trim();
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(citation);
+          } else {
+            const textarea = document.createElement("textarea");
+            textarea.value = citation;
+            textarea.setAttribute("readonly", "");
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            textarea.remove();
+          }
+
+          copyButton.classList.add("is-copied");
+          copyButton.setAttribute("aria-label", "Copied BibTeX citation");
+          copyButton.title = "Copied";
+
+          window.setTimeout(() => {
+            copyButton.classList.remove("is-copied");
+            copyButton.setAttribute("aria-label", "Copy BibTeX citation");
+            copyButton.title = "Copy BibTeX citation";
+          }, 1400);
+        } catch (error) {
+          copyButton.setAttribute("aria-label", "Copy failed");
+          copyButton.title = "Copy failed";
+        }
+      });
+    }
+  </script>
 </body>
 </html>
