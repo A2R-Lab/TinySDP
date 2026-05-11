@@ -1,0 +1,10 @@
+add_executable(ushape_demo ushape_demo.cpp)
+target_link_libraries(ushape_demo PRIVATE solver)
+
+add_executable(sweeping_gate_3d_demo dynamic_3d_demo.cpp)
+target_link_libraries(sweeping_gate_3d_demo PRIVATE solver)
+target_compile_definitions(sweeping_gate_3d_demo PRIVATE TINYSDP_SCENARIO_SLUG="sweeping_barrier")
+
+add_executable(rising_gate_3d_demo dynamic_3d_demo.cpp)
+target_link_libraries(rising_gate_3d_demo PRIVATE solver)
+target_compile_definitions(rising_gate_3d_demo PRIVATE TINYSDP_SCENARIO_SLUG="vertical_gate")
