@@ -193,28 +193,9 @@ h1 {
 .button:hover { background: #000; }
 
 .button-icon {
-  width: 21px;
-  height: 21px;
+  width: 24px;
+  height: 24px;
   flex: 0 0 auto;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-}
-
-.youtube-icon,
-.github-icon {
-  fill: currentColor;
-  stroke: none;
-}
-
-.youtube-icon path + path {
-  fill: #1c1c1c;
-}
-
-.button:hover .youtube-icon path + path {
-  fill: #000;
 }
 
 .hero-gif {
