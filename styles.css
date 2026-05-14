@@ -12,6 +12,7 @@
   --line:      #e4e4e4;
   --line-soft: #efefef;
   --max-w:     1080px;
+  --hero-w:    1280px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -32,6 +33,10 @@ img, video {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+svg {
+  display: block;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -79,7 +84,7 @@ sup {
 }
 
 .hero-shell {
-  width: min(100%, var(--max-w));
+  width: min(100%, var(--hero-w));
   margin: 0 auto;
 }
 
@@ -163,7 +168,7 @@ h1 {
 .hero-actions {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 60px;
   flex-wrap: wrap;
   margin-bottom: 40px;
 }
@@ -172,13 +177,14 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 38px;
-  padding: 0 22px;
+  gap: 10px;
+  height: 48px;
+  padding: 0 30px;
   border-radius: 5px;
   background: #1c1c1c;
   color: #ffffff;
   font-family: "Manrope", system-ui, sans-serif;
-  font-size: 0.84rem;
+  font-size: 0.98rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   transition: background 100ms ease;
@@ -186,9 +192,33 @@ h1 {
 
 .button:hover { background: #000; }
 
-/* Hero video: remove the extra top margin since hero-actions already adds spacing */
-.hero-shell .media-frame {
-  margin-top: 0;
+.button-icon {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.youtube-icon,
+.github-icon {
+  fill: currentColor;
+  stroke: none;
+}
+
+.youtube-icon path + path {
+  fill: #1c1c1c;
+}
+
+.button:hover .youtube-icon path + path {
+  fill: #000;
+}
+
+.hero-gif {
+  width: 100%;
 }
 
 /* ── Content sections ─────────────────────────────────────── */
@@ -247,19 +277,6 @@ h3 {
 }
 
 .lead { margin-bottom: 16px; }
-
-/* ── Video ────────────────────────────────────────────────── */
-
-.media-frame {
-  margin-top: 28px;
-  background: #000;
-  border-radius: 8px;
-  overflow: hidden;
-  /* Thin border so video doesn't bleed on white */
-  border: 1px solid var(--line);
-}
-
-.media-frame video { width: 100%; }
 
 /* ── Experiment blocks ────────────────────────────────────── */
 
