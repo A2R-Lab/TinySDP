@@ -1,4 +1,4 @@
-# TinySDP
+# TinySDP (Robotics: Science and Systems 2026)
 
 Real-time semidefinite optimization for certifiable edge robotics.
 
@@ -10,7 +10,6 @@ Crazyflie 2.1 Brushless.
 ✅ Supports PSD-relaxed obstacle avoidance  
 ✅ Static-memory embedded implementation  
 ✅ Hardware demos on Crazyflie  
-✅ Accepted to RSS 2026
 
 ![TinySDP Crazyflie demo](assets/tinysdp-demo.gif)
 
@@ -27,6 +26,41 @@ This repository contains the reusable C++ solver in `include/solver` and
 - `ushape_demo`: closed-loop 2D U-shape obstacle avoidance with rank-1 certificate logging
 - `sweeping_gate_3d_demo`: 3D sweeping gate
 - `rising_gate_3d_demo`: 3D rising gate
+
+## Benchmarks
+
+TinySDP is evaluated on obstacle-avoidance problems designed to challenge local
+and reactive methods: a static U-shaped cul-de-sac, a dynamic moving-gap
+benchmark, dynamic 3D sphere scenarios, and Crazyflie hardware deployment.
+
+Across the static U-shape benchmark, TinySDP reaches the goal from all tested
+starts while zero-margin local baselines crash or get stuck. Compared with
+RPCBF, TinySDP produces substantially shorter safe paths.
+
+| Start | TinySDP path length | RPCBF path length | TinySDP goal distance |
+| --- | ---: | ---: | ---: |
+| Inside | 17.95 | 26.03 | 0.006 |
+| Outside center | 10.15 | 31.03 | 0.021 |
+| Edge up | 9.93 | 36.81 | 0.023 |
+| Edge down | 9.93 | 36.25 | 0.023 |
+
+In the dynamic moving-gap benchmark, TinySDP maintains safety with a final goal
+distance of `0.018`, while zero-margin TinyMPC-LIN and TinyMPC-HOCBF collide.
+The same PSD lifting also extends to 3D sphere avoidance, including sweeping
+barrier and vertical gate scenarios.
+
+| Method | Goal distance | Safe |
+| --- | ---: | :---: |
+| TinySDP (ours) | 0.018 | ✓ |
+| RPCBF | 0.069 | ✓ |
+| TinyMPC-LIN (m=1.5m) | 0.023 | ✓ |
+| TinyMPC-LIN (m=0m) | — | ✗ |
+| TinyMPC-HOCBF (m=3m) | 0.077 | ✓ |
+| TinyMPC-HOCBF (m=0m) | — | ✗ |
+
+On Crazyflie hardware, TinySDP runs onboard in the control loop and maintains
+the rank-1 certificate online, keeping the lifted safety margin positive during
+flight.
 
 ## Dependencies
 
@@ -91,6 +125,21 @@ Use `--input-dir` or `--output-dir` to override those paths.
 ## Getting Help
 
 Open a GitHub issue for bugs, build problems, or questions about the examples.
+
+## Citation
+
+If you use our code, please cite:
+
+```bibtex
+@inproceedings{mahajan2026tinysdp,
+  title={TinySDP: Real Time Semidefinite Optimization for Certifiable and Agile Edge Robotics},
+  author={Ishaan Mahajan and Jon Arrizabalaga and Andrea Grillo and Fausto Vega and James Anderson and Zachary Manchester and Brian Plancher},
+  booktitle={Robotics Science and Systems (RSS)},
+  address = {Sydney, Australia},
+  month={July},
+  year = {2026}
+}
+```
 
 ## Maintainers
 
