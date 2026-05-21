@@ -29,62 +29,8 @@ This repository contains the reusable C++ solver in `include/solver` and
 
 ## Benchmarks
 
-TinySDP is evaluated on obstacle-avoidance problems designed to challenge local
-and reactive methods: a static U-shaped cul-de-sac, a dynamic moving-gap
-benchmark, dynamic 3D sphere scenarios, and Crazyflie hardware deployment.
-
-Across the static U-shape benchmark, TinySDP reaches the goal from all tested
-starts while zero-margin local baselines crash or get stuck. Tuned local
-baselines require impractically large safety margins to recover safety.
-
-**Start: Inside**
-
-| Method | Path length | Goal distance | Safe |
-| --- | ---: | ---: | :---: |
-| TinySDP (ours) | 17.95 | 0.006 | ✓ |
-| RPCBF | 26.03 | 0.091 | ✓ |
-| TinyMPC-LIN (m=3.1m) | 18.38 | 1.400 | ✓ |
-| TinyMPC-LIN (m=0m) | — | — | ✗ |
-| TinyMPC-HOCBF (m=3m) | — | — | ✗ |
-| TinyMPC-HOCBF (m=0m) | — | — | ✗ |
-
-**Start: Outside Center**
-
-| Method | Path length | Goal distance | Safe |
-| --- | ---: | ---: | :---: |
-| TinySDP (ours) | 10.15 | 0.021 | ✓ |
-| RPCBF | 31.03 | 0.093 | ✓ |
-| TinyMPC-LIN (m=3.1m) | 24.58 | 1.400 | ✓ |
-| TinyMPC-LIN (m=0m) | — | — | ✗ |
-| TinyMPC-HOCBF (m=3m) | — | — | ✗ |
-| TinyMPC-HOCBF (m=0m) | — | — | ✗ |
-
-**Start: Edge Up**
-
-| Method | Path length | Goal distance | Safe |
-| --- | ---: | ---: | :---: |
-| TinySDP (ours) | 9.93 | 0.023 | ✓ |
-| RPCBF | 36.81 | 0.132 | ✓ |
-| TinyMPC-LIN (m=3.1m) | 18.58 | 1.400 | ✓ |
-| TinyMPC-LIN (m=0m) | — | — | ✗ |
-| TinyMPC-HOCBF (m=3m) | — | — | ✗ |
-| TinyMPC-HOCBF (m=0m) | — | — | ✗ |
-
-**Start: Edge Down**
-
-| Method | Path length | Goal distance | Safe |
-| --- | ---: | ---: | :---: |
-| TinySDP (ours) | 9.93 | 0.023 | ✓ |
-| RPCBF | 36.25 | 0.108 | ✓ |
-| TinyMPC-LIN (m=3.1m) | 23.64 | 1.400 | ✓ |
-| TinyMPC-LIN (m=0m) | — | — | ✗ |
-| TinyMPC-HOCBF (m=3m) | — | — | ✗ |
-| TinyMPC-HOCBF (m=0m) | — | — | ✗ |
-
 In the dynamic moving-gap benchmark, TinySDP maintains safety with a final goal
 distance of `0.018`, while zero-margin TinyMPC-LIN and TinyMPC-HOCBF collide.
-The same PSD lifting also extends to 3D sphere avoidance, including sweeping
-barrier and vertical gate scenarios.
 
 | Method | Goal distance | Safe |
 | --- | ---: | :---: |
@@ -95,9 +41,7 @@ barrier and vertical gate scenarios.
 | TinyMPC-HOCBF (m=3m) | 0.077 | ✓ |
 | TinyMPC-HOCBF (m=0m) | — | ✗ |
 
-On Crazyflie hardware, TinySDP runs onboard in the control loop and maintains
-the rank-1 certificate online, keeping the lifted safety margin positive during
-flight.
+For more information, visit the [project page](https://a2r-lab.org/TinySDP/).
 
 ## Dependencies
 
