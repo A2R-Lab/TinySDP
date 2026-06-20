@@ -13,14 +13,13 @@
   --line-soft: #efefef;
   --max-w:     1080px;
   --hero-w:    1280px;
-  --page-nav-space: 132px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 24px;
+  scroll-padding-top: 72px;
 }
 
 body {
@@ -53,10 +52,7 @@ sup {
 
 /* ── Page wrapper ─────────────────────────────────────────── */
 
-.page {
-  padding-left: var(--page-nav-space);
-  padding-bottom: 88px;
-}
+.page { padding-bottom: 88px; }
 
 /* Centered content column used by most sections */
 .content-column {
@@ -65,40 +61,40 @@ sup {
   padding: 0 32px;
 }
 
-/* ── Persistent section nav ───────────────────────────────── */
+/* ── Page nav ─────────────────────────────────────────────── */
 
 .page-nav {
-  position: fixed;
+  position: sticky;
   z-index: 50;
-  top: 50%;
-  left: 28px;
+  top: 0;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  max-width: 112px;
-  padding: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding: 14px 32px;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
   color: var(--muted);
-  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
 }
 
 .page-nav a {
   display: block;
-  padding: 2px 0 2px 12px;
-  border-left: 2px solid transparent;
-  text-align: left;
+  padding: 2px 0 4px;
+  border-bottom: 2px solid transparent;
+  text-align: center;
   transition: background 100ms ease, border-color 100ms ease, color 100ms ease;
 }
 
 .page-nav a:hover,
 .page-nav a:focus-visible {
   color: var(--text);
-  border-left-color: #0b3d91;
+  border-bottom-color: #0b3d91;
 }
 
 .page-nav a:focus-visible {
@@ -571,34 +567,17 @@ figure { margin: 0; }
 /* ── Responsive: mobile ───────────────────────────────────── */
 
 @media (max-width: 720px) {
-  html { scroll-padding-top: 16px; }
-
-  .page {
-    padding-left: 0;
-  }
+  html { scroll-padding-top: 64px; }
 
   .page-nav {
-    position: static;
-    align-items: center;
-    gap: 6px;
-    max-width: none;
-    padding: 16px 16px 0;
+    gap: 20px;
+    padding: 10px 16px;
     font-size: 0.68rem;
     letter-spacing: 0.04em;
-    transform: none;
   }
 
   .page-nav a {
-    padding: 2px 0;
-    border-left: 0;
-    border-bottom: 2px solid transparent;
-    text-align: center;
-  }
-
-  .page-nav a:hover,
-  .page-nav a:focus-visible {
-    border-left-color: transparent;
-    border-bottom-color: #0b3d91;
+    padding-bottom: 3px;
   }
 
   .hero { padding: 0 16px 36px; }
