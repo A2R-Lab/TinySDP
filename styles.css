@@ -570,18 +570,38 @@ figure { margin: 0; }
 
 /* ── Responsive: mobile ───────────────────────────────────── */
 
-@media (max-width: 600px) {
-  :root { --page-nav-space: 92px; }
+@media (max-width: 720px) {
+  html { scroll-padding-top: 16px; }
+
+  .page {
+    padding-left: 0;
+  }
+
+  .page-nav {
+    position: static;
+    align-items: center;
+    gap: 6px;
+    max-width: none;
+    padding: 16px 16px 0;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    transform: none;
+  }
+
+  .page-nav a {
+    padding: 2px 0;
+    border-left: 0;
+    border-bottom: 2px solid transparent;
+    text-align: center;
+  }
+
+  .page-nav a:hover,
+  .page-nav a:focus-visible {
+    border-left-color: transparent;
+    border-bottom-color: #0b3d91;
+  }
 
   .hero { padding: 0 16px 36px; }
-  .page-nav {
-    left: 14px;
-    gap: 8px;
-    max-width: 74px;
-    font-size: 0.63rem;
-    letter-spacing: 0.04em;
-  }
-  .page-nav a { padding: 2px 0 2px 8px; }
   .content-column { padding: 0 16px; }
   .section { padding: 44px 16px; }
 
