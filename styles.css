@@ -13,11 +13,15 @@
   --line-soft: #efefef;
   --max-w:     1080px;
   --hero-w:    1280px;
+  --page-nav-space: 132px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
 
 body {
   margin: 0;
@@ -49,7 +53,10 @@ sup {
 
 /* ── Page wrapper ─────────────────────────────────────────── */
 
-.page { padding-bottom: 88px; }
+.page {
+  padding-left: var(--page-nav-space);
+  padding-bottom: 88px;
+}
 
 /* Centered content column used by most sections */
 .content-column {
@@ -58,23 +65,46 @@ sup {
   padding: 0 32px;
 }
 
-/* ── Top nav ──────────────────────────────────────────────── */
+/* ── Persistent section nav ───────────────────────────────── */
 
-.top-nav {
+.page-nav {
+  position: fixed;
+  z-index: 50;
+  top: 50%;
+  left: 28px;
   display: flex;
-  justify-content: center;
-  gap: 32px;
-  flex-wrap: wrap;
-  padding: 16px 32px;
-  font-size: 0.84rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 112px;
+  padding: 0;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
   color: var(--muted);
-  border-bottom: 1px solid var(--line);
+  transform: translateY(-50%);
 }
 
-.top-nav a { transition: color 100ms; }
-.top-nav a:hover { color: var(--text); }
+.page-nav a {
+  display: block;
+  padding: 2px 0 2px 12px;
+  border-left: 2px solid transparent;
+  text-align: left;
+  transition: background 100ms ease, border-color 100ms ease, color 100ms ease;
+}
+
+.page-nav a:hover,
+.page-nav a:focus-visible {
+  color: var(--text);
+  border-left-color: #0b3d91;
+}
+
+.page-nav a:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 2px;
+}
 
 /* ── Hero ─────────────────────────────────────────────────── */
 
@@ -541,8 +571,17 @@ figure { margin: 0; }
 /* ── Responsive: mobile ───────────────────────────────────── */
 
 @media (max-width: 600px) {
+  :root { --page-nav-space: 92px; }
+
   .hero { padding: 0 16px 36px; }
-  .top-nav { padding: 14px 16px; gap: 20px; }
+  .page-nav {
+    left: 14px;
+    gap: 8px;
+    max-width: 74px;
+    font-size: 0.63rem;
+    letter-spacing: 0.04em;
+  }
+  .page-nav a { padding: 2px 0 2px 8px; }
   .content-column { padding: 0 16px; }
   .section { padding: 44px 16px; }
 
