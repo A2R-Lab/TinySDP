@@ -285,6 +285,16 @@ h3 {
 
 .lead { margin-bottom: 16px; }
 
+#funding a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+#funding a:hover {
+  color: #1749a5;
+}
+
 /* ── Experiment blocks ────────────────────────────────────── */
 
 /* First block just gets margin from the intro paragraph */
