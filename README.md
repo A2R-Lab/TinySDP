@@ -125,3 +125,6 @@ If you use our code, please cite:
 ## Maintainers
 
 TinySDP is maintained by the Accessible and Accelerated Robotics Lab (A²R Lab).
+
+## Funding Acknowledgement
+This work was supported by the National Science Foundation (under Awards [2144634](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2144634), [2231350](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2231350), and [2411369](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2411369)) and by the Center of AI Technology (CAIT) in collaboration with Amazon. Any opinions, findings, conclusions, or recommendations expressed in this material are those of the authors and do not necessarily reflect those of the funding organizations.
