@@ -285,13 +285,16 @@ h3 {
 
 .lead { margin-bottom: 16px; }
 
-#funding a {
+.funding-award-link {
   color: var(--link);
+  font-weight: 600;
   text-decoration: underline;
+  text-decoration-thickness: 1.5px;
   text-underline-offset: 0.16em;
 }
 
-#funding a:hover {
+.funding-award-link:hover,
+.funding-award-link:focus-visible {
   color: #1749a5;
 }
 
