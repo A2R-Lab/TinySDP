@@ -1,17 +1,22 @@
 # TinySDP (Robotics: Science and Systems 2026)
 
 <p align="center">
-  <a href="https://ishaanmahajan.com">Ishaan&nbsp;Mahajan</a>,
-  <a href="https://jonarriza96.github.io/">Jon&nbsp;Arrizabalaga</a>,
-  <a href="https://grilloandrea6.github.io/">Andrea&nbsp;Grillo</a>,
-  <a href="https://www.linkedin.com/in/fausto-vega/">Fausto&nbsp;Vega</a>,
-  <a href="https://www.columbia.edu/~ja3451/index.html">James&nbsp;Anderson</a>,
-  <a href="https://www.linkedin.com/in/zacmanchester/">Zachary&nbsp;Manchester</a>,
-  <a href="https://brianplancher.com/">Brian&nbsp;Plancher</a>
+  <a href="https://ishaanmahajan.com">Ishaan&nbsp;Mahajan</a><sup>1</sup>,
+  <a href="https://jonarriza96.github.io/">Jon&nbsp;Arrizabalaga</a><sup>2,&#8225;</sup>,
+  <a href="https://grilloandrea6.github.io/">Andrea&nbsp;Grillo</a><sup>3,4,&#8225;</sup>,
+  <a href="https://www.linkedin.com/in/fausto-vega/">Fausto&nbsp;Vega</a><sup>2,&#8225;</sup>,
+  <a href="https://www.columbia.edu/~ja3451/index.html">James&nbsp;Anderson</a><sup>1,&#8224;</sup>,
+  <a href="https://www.linkedin.com/in/zacmanchester/">Zachary&nbsp;Manchester</a><sup>2,&#8224;</sup>,
+  <a href="https://brianplancher.com/">Brian&nbsp;Plancher</a><sup>3</sup>
 </p>
 
 <p align="center">
-  Columbia University &middot; Massachusetts Institute of Technology &middot; Dartmouth College &middot; EPFL
+  <sup>1</sup>Columbia University &nbsp;&nbsp;
+  <sup>2</sup>Massachusetts Institute of Technology &nbsp;&nbsp;
+  <sup>3</sup>Dartmouth College &nbsp;&nbsp;
+  <sup>4</sup>EPFL
+  <br>
+  <sup>&#8225;</sup>Equal contribution &nbsp;&nbsp; <sup>&#8224;</sup>Equal advising
 </p>
 
 <p align="center">
