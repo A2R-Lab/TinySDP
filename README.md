@@ -1,27 +1,24 @@
 # TinySDP (Robotics: Science and Systems 2026)
 
 <p align="center">
-  <a href="https://ishaanmahajan.com">Ishaan Mahajan</a><sup>1</sup>,
-  <a href="https://jonarriza96.github.io/">Jon Arrizabalaga</a><sup>2,&#8225;</sup>,
-  <a href="https://grilloandrea6.github.io/">Andrea Grillo</a><sup>3,4,&#8225;</sup>,
-  <a href="https://www.linkedin.com/in/fausto-vega/">Fausto Vega</a><sup>2,&#8225;</sup>,
-  <a href="https://www.columbia.edu/~ja3451/index.html">James Anderson</a><sup>1,&#8224;</sup>,
-  <a href="https://www.linkedin.com/in/zacmanchester/">Zachary Manchester</a><sup>2,&#8224;</sup>,
-  <a href="https://brianplancher.com/">Brian Plancher</a><sup>3</sup>
+  <a href="https://ishaanmahajan.com">Ishaan&nbsp;Mahajan</a>,
+  <a href="https://jonarriza96.github.io/">Jon&nbsp;Arrizabalaga</a>,
+  <a href="https://grilloandrea6.github.io/">Andrea&nbsp;Grillo</a>,
+  <a href="https://www.linkedin.com/in/fausto-vega/">Fausto&nbsp;Vega</a>,
+  <a href="https://www.columbia.edu/~ja3451/index.html">James&nbsp;Anderson</a>,
+  <a href="https://www.linkedin.com/in/zacmanchester/">Zachary&nbsp;Manchester</a>,
+  <a href="https://brianplancher.com/">Brian&nbsp;Plancher</a>
 </p>
 
 <p align="center">
-  <sup>1</sup>Columbia University &nbsp;&nbsp;
-  <sup>2</sup>Massachusetts Institute of Technology &nbsp;&nbsp;
-  <sup>3</sup>Dartmouth College &nbsp;&nbsp;
-  <sup>4</sup>EPFL
-  <br>
-  <sup>&#8225;</sup>Equal contribution &nbsp;&nbsp; <sup>&#8224;</sup>Equal advising
+  Columbia University &middot; Massachusetts Institute of Technology &middot; Dartmouth College &middot; EPFL
 </p>
 
 <p align="center">
   <a href="https://arxiv.org/abs/2605.13748"><img src="https://img.shields.io/badge/arXiv-2605.13748-b31b1b?logo=arxiv&logoColor=white" alt="arXiv"></a>
+  &nbsp;&nbsp;&nbsp;
   <a href="https://a2r-lab.org/TinySDP/"><img src="https://img.shields.io/badge/Project-Website-4c71f0?logo=googlechrome&logoColor=white" alt="Project Website"></a>
+  &nbsp;&nbsp;&nbsp;
   <a href="https://youtu.be/iYQyT-WK-X8?si=s_7gRyH7ZHOE82T_"><img src="https://img.shields.io/badge/YouTube-Video-ff0000?logo=youtube&logoColor=white" alt="YouTube Video"></a>
 </p>
 
