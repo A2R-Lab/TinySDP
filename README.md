@@ -7,7 +7,7 @@
   <a href="https://www.linkedin.com/in/fausto-vega/">Fausto Vega</a><sup>2,&#8225;</sup>,
   <a href="https://www.columbia.edu/~ja3451/index.html">James Anderson</a><sup>1,&#8224;</sup>,
   <a href="https://www.linkedin.com/in/zacmanchester/">Zachary Manchester</a><sup>2,&#8224;</sup>,
-  and <a href="https://brianplancher.com/">Brian Plancher</a><sup>3</sup>
+  <a href="https://brianplancher.com/">Brian Plancher</a><sup>3</sup>
 </p>
 
 <p align="center">
